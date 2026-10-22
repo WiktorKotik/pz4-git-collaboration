@@ -1,6 +1,7 @@
 package com.example.loginapp
 
 import android.os.Bundle
+import android.util.Patterns
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -17,7 +18,18 @@ class LoginActivity : AppCompatActivity() {
         val btnLogin = findViewById<Button>(R.id.btnLogin)
 
         btnLogin.setOnClickListener {
-            Toast.makeText(this, "Вход: ${etEmail.text}", Toast.LENGTH_SHORT).show()
+            val email = etEmail.text.toString().trim()
+            val password = etPassword.text.toString()
+
+            when {
+                !isEmailValid(email) -> etEmail.error = getString(R.string.error_email)
+                !isPasswordValid(password) -> etPassword.error = getString(R.string.error_password)
+                else -> Toast.makeText(this, R.string.login_success, Toast.LENGTH_SHORT).show()
+            }
         }
     }
+
+    private fun isEmailValid(email: String) = Patterns.EMAIL_ADDRESS.matcher(email).matches()
+
+    private fun isPasswordValid(password: String) = password.length >= 6
 }
