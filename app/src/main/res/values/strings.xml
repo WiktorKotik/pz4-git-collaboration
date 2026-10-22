@@ -3,4 +3,7 @@
     <string name="email_hint">Электронная почта</string>
     <string name="password_hint">Пароль</string>
     <string name="login_button">Войти</string>
+    <string name="error_email">Введите корректный e-mail</string>
+    <string name="error_password">Пароль должен содержать не менее 6 символов</string>
+    <string name="login_success">Вход выполнен</string>
 </resources>
